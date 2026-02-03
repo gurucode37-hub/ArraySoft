@@ -1,4 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import Nav from "./Layout/Nav.jsx";
 import Footer from "./Layout/Footer.jsx";
@@ -32,6 +34,8 @@ import ClientWebsite from "./client/Website.jsx";
 // Admin pages 
 import AdminUser from "./admin/AdminUsers.jsx";
 import AdminRequests from "./admin/AdminRequests.jsx";
+import AdminProfile from "./admin/AdminProfile.jsx";
+import AdminCourses from "./admin/AdminCourses.jsx";
 
 import "./App.css";
 
@@ -41,6 +45,7 @@ const App = () => {
       <Nav />
 
       <div className="pt-[88px]">
+        <ToastContainer position="top-center" />
         <Routes>
           {/* Main pages */}
           <Route path="/" element={<Home />} />
@@ -69,8 +74,10 @@ const App = () => {
           <Route path="/client/website" element={<ClientWebsite />} />
 
           {/* ADMIN ROUTES */}
+          <Route path="/admin/profile" element={<AdminProfile />} />
           <Route path="/admin/users" element={<AdminUser />} />
           <Route path="/admin/requests" element={<AdminRequests />} />
+          <Route path="/admin/courses" element={<AdminCourses />} />
 
         </Routes>
       </div>

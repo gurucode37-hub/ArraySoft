@@ -8,15 +8,22 @@ const AdminRequests = () => {
   useEffect(() => {
     const fetchRequests = async () => {
       try {
+        const token = localStorage.getItem("token");
+
         const res = await axios.get(
-          `${import.meta.env.VITE_Backend_url}/admin/show-req`
+          `${import.meta.env.VITE_Backend_url}/admin/show-req`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
         );
 
         if (res.data.success) {
           setRequests(res.data.requests);
         }
       } catch (error) {
-        console.error("Failed to fetch requests");
+        console.error("Failed to fetch requests", error);
       } finally {
         setLoading(false);
       }
@@ -50,13 +57,8 @@ const AdminRequests = () => {
 
             <tbody>
               {requests.map((req, index) => (
-                <tr
-                  key={req._id}
-                  className="hover:bg-[#111] transition"
-                >
-                  <td className="p-3 border-b border-white/10">
-                    {index + 1}
-                  </td>
+                <tr key={req._id} className="hover:bg-[#111] transition">
+                  <td className="p-3 border-b border-white/10">{index + 1}</td>
                   <td className="p-3 border-b border-white/10">
                     {req.username}
                   </td>

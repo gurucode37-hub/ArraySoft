@@ -6,12 +6,15 @@ const AdminUsers = () => {
   const [totalUsers, setTotalUsers] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
     const fetchUsers = async () => {
       try {
         const res = await axios.get(
-          `${import.meta.env.VITE_Backend_url}/admin/users`
+          `${import.meta.env.VITE_Backend_url}/admin/users`, {headers:{
+            Authorization: `Bearer ${token}`,
+          }}
         );
 
         if (res.data.success) {

@@ -1,6 +1,7 @@
 import express from "express";
 const route = express.Router();
-import {userController, loginController,logoutController, changeNameController, verifyEmailController, changePasswordController} from "../controllers/user.js"
+import authMiddleware from "../middlewares/auth.js";
+import {userController, loginController,logoutController, changeNameController, verifyEmailController, changePasswordController} from "../controllers/userAuth.js"
 
 route.post("/register", userController);
 route.post("/logout", logoutController);

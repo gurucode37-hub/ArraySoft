@@ -2,9 +2,10 @@ import express from "express";
 import 'dotenv/config';
 import db from "./util/db.js";
 import cors from "cors";
-import userRoute from "./routes/user.js";
+import userRoute from "./routes/userAuth.js";
 import adminRoute from "./routes/admin.js";
 import paymentRoute from "./routes/payment.js";
+import reqRoute from "./routes/userReq.js"
 const app = express();
 
 app.use(cors());
@@ -13,6 +14,7 @@ app.use(express.urlencoded({extended: true}));
 app.use("/api", userRoute);
 app.use("/admin", adminRoute);
 app.use("/payment", paymentRoute);
+app.use("/form", reqRoute);
 
 db();
 const port = process.env.PORT;

@@ -24,7 +24,7 @@ const Contact = () => {
 
     try {
       const res = await axios.post(
-        `${import.meta.env.VITE_Backend_url}/admin/req`,
+        `${import.meta.env.VITE_Backend_url}/form/req`,
         formData
       );
 

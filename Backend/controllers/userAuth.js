@@ -8,7 +8,7 @@ import { sendOTPEmail } from "../util/sendMail.js";
 export const userController = async (req, res) => {
   try {
     let { username, email, password } = req.body;
-    email = email.toLowerCase(); // 🔥 IMPORTANT
+    email = email.toLowerCase();
 
     const exists = await userModel.findOne({ email });
     if (exists) {
@@ -26,7 +26,7 @@ export const userController = async (req, res) => {
       email,
       password: hashPassword,
       otp,
-      otpExpiry: Date.now() + 10 * 60 * 1000, // 10 min
+      otpExpiry: Date.now() + 10 * 60 * 1000,
     });
 
     await sendOTPEmail(email, otp);
@@ -47,7 +47,7 @@ export const userController = async (req, res) => {
 export const verifyEmailController = async (req, res) => {
   try {
     let { email, otp } = req.body;
-    email = email.toLowerCase(); // 🔥 IMPORTANT
+    email = email.toLowerCase();
 
     const tempUser = tempUsers.get(email);
 
@@ -74,7 +74,7 @@ export const verifyEmailController = async (req, res) => {
     });
 
     await user.save();
-    tempUsers.delete(email); // 🧹 clean temp data
+    tempUsers.delete(email);
 
     const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
       expiresIn: "1d",
@@ -102,6 +102,30 @@ export const loginController = async (req, res) => {
     let { email, password } = req.body;
     email = email.toLowerCase();
 
+    // ✅ ADMIN LOGIN
+    if (
+      email === process.env.ADMIN_EMAIL &&
+      password === process.env.ADMIN_PASSWORD
+    ) {
+      const token = jwt.sign(
+        { role: "admin", email },
+        process.env.ADMIN_JWT_SECRET,
+        { expiresIn: "1d" },
+      );
+
+      return res.status(200).json({
+        success: true,
+        message: "Admin login successful",
+        role: "admin",
+        token,
+        user: {
+          username: "Sneha Rajput",
+          email: process.env.ADMIN_EMAIL,
+        },
+      });
+    }
+
+    // ✅ NORMAL USER
     const user = await userModel.findOne({ email });
     if (!user) {
       return res.status(400).json({
@@ -121,15 +145,18 @@ export const loginController = async (req, res) => {
     user.lastLogin = new Date();
     await user.save();
 
-    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
-      expiresIn: "1d",
-    });
+    const token = jwt.sign(
+      { userId: user._id, role: "user" },
+      process.env.JWT_SECRET,
+      { expiresIn: "1d" },
+    );
 
     const { password: _, ...userData } = user._doc;
 
     res.status(200).json({
       success: true,
       message: "Login successfully!",
+      role: "user",
       token,
       user: userData,
     });
