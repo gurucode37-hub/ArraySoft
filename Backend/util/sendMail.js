@@ -1,23 +1,30 @@
 import nodemailer from "nodemailer";
 
-export const sendOTPEmail = async (to, otp) => {
-  const transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-      user: process.env.EMAIL,
-      pass: process.env.EMAIL_PASS, // app password
-    },
-  });
+const transporter = nodemailer.createTransport({
+   host: process.env.SMTP_HOST,
+  port: process.env.SMTP_PORT,
+  auth: {
+    user: process.env.SMTP_USER,
+    pass: process.env.SMTP_PASS
+  }
+});
 
-  await transporter.sendMail({
-    from: `"ArraySoft" <${process.env.EMAIL}>`,
-    to,
-    subject: "Email Verification OTP",
-    html: `
-      <h2>Email Verification</h2>
-      <p>Your OTP is:</p>
-      <h1>${otp}</h1>
-      <p>This OTP is valid for 10 minutes.</p>
-    `,
-  });
+export const sendOTPEmail = async (to, otp) => {
+  try {
+    const info = await transporter.sendMail({
+      from: process.env.SMTP_FROM,
+      to: to,
+      subject: "Email Verification OTP",
+      html: `
+        <h2>Email Verification</h2>
+        <p>Your OTP is:</p>
+        <h1>${otp}</h1>
+        <p>This OTP is valid for 10 minutes.</p>
+      `,
+    });
+
+    return true;
+  } catch (error) {
+    return false;
+  }
 };
