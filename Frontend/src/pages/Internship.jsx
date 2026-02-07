@@ -1,169 +1,154 @@
-import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import internships from "../../data/internships.js";
 
 const Internship = () => {
+  const token = localStorage.getItem("token");
+  const user = JSON.parse(localStorage.getItem("user"));
+
+  const handleApply = (internship, selectedMode, selectedDuration) => {
+    if (!token || !user) {
+      toast.error("Please login to apply for internship 🔐");
+      return;
+    }
+
+    if (!selectedMode || !selectedDuration) {
+      toast.error("Please select mode and duration first ⚠️");
+      return;
+    }
+
+    const subject = `Internship Application - ${internship.title}`;
+
+    const body = `
+Hello ArraySoft Technology Team,
+
+I would like to apply for the following internship:
+
+Internship: ${internship.title}
+Mode: ${selectedMode}
+Duration: ${selectedDuration}
+
+Applicant Details:
+Name: ${user.username}
+Email: ${user.email}
+
+Please guide me with the next steps.
+
+Thank you,
+${user.username}
+    `;
+
+    window.location.href = `mailto:info@arraysofttechnology.com?subject=${encodeURIComponent(
+      subject,
+    )}&body=${encodeURIComponent(body)}`;
+  };
+
   return (
     <section className="bg-black text-white">
-
       {/* HERO */}
-      <div className="bg-gradient-to-r from-[#0f0f0f] to-[#1a1a1a] py-28 px-6">
-        <div className="max-w-6xl mx-auto text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">
-            Internship at <span className="text-orange-500">ArraySoft Technology</span>
-          </h1>
-          <p className="text-gray-400 max-w-3xl mx-auto leading-relaxed">
-            Gain industry-ready experience, work on real-world projects, and
-            grow your technical skills in a professional IT environment.
-          </p>
-        </div>
+      <div className="py-28 px-6 bg-gradient-to-br from-zinc-900 to-black text-center">
+        <h1 className="text-4xl md:text-5xl font-bold mb-6">
+          Internship at{" "}
+          <span className="text-orange-500">ArraySoft Technology</span>
+        </h1>
+        <p className="text-gray-400 max-w-3xl mx-auto">
+          Apply for industry-focused internships with real exposure and
+          professional mentorship.
+        </p>
       </div>
 
-      {/* WHY INTERN WITH US */}
-      <div className="max-w-6xl mx-auto py-24 px-6">
-        <h2 className="text-3xl font-bold mb-14">
-          Why Choose <span className="text-orange-500">ArraySoft?</span>
-        </h2>
+      {/* INTERNSHIP CARDS */}
+      <div className="max-w-7xl mx-auto py-24 px-6 grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+        {internships.map((item) => {
+          let selectedMode = "";
+          let selectedDuration = "";
 
-        <div className="grid md:grid-cols-2 gap-10 text-gray-300">
-          {[
-            "Tech-focused real-world environment",
-            "Advanced projects in Web, Python & AI",
-            "Strong mentor & peer connections",
-            "Quick onboarding & smooth workflow",
-            "Exposure to multiple tech domains",
-            "Career-focused practical learning",
-            "Commitment to long-term growth",
-          ].map((item, i) => (
+          return (
             <div
-              key={i}
-              className="bg-[#151515] p-6 rounded-lg border border-white/10 
-              hover:border-orange-500/50 hover:-translate-y-1 transition"
+              key={item.id}
+              className="bg-zinc-900/70 backdrop-blur rounded-2xl p-8
+              border border-white/10 transition-all duration-500
+              hover:-translate-y-2 hover:border-orange-500/50
+              hover:shadow-xl hover:shadow-orange-500/10"
             >
-              ✔ {item}
+              <h2 className="text-2xl font-semibold mb-4 text-orange-500">
+                {item.title}
+              </h2>
+
+              <p className="text-gray-400 text-sm mb-6 leading-relaxed">
+                {item.description}
+              </p>
+
+              {/* MODE DROPDOWN */}
+              <div className="mb-3">
+                <label className=" block text-xs text-gray-400 mb-1">Mode</label>
+                <select
+                  onChange={(e) => (selectedMode = e.target.value)}
+                  className=" bg-zinc-800 border border-white/10
+    rounded-md px-3 py-2 text-xs
+    focus:outline-none focus:border-orange-500"
+                >
+                  <option value="">Select</option>
+                  {item.modes.map((mode, i) => (
+                    <option key={i} value={mode}>
+                      {mode}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              {/* DURATION DROPDOWN */}
+              <div className="mb-5">
+                <label className="block text-xs text-gray-400 mb-1">
+                  Duration
+                </label>
+                <select
+                  onChange={(e) => (selectedDuration = e.target.value)}
+                  className=" bg-zinc-800 border border-white/10
+    rounded-md px-3 py-2 text-xs
+    focus:outline-none focus:border-orange-500"
+                >
+                  <option value="">Select</option>
+                  {item.durations.map((d, i) => (
+                    <option key={i} value={d}>
+                      {d}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              {/* BENEFITS */}
+              <ul className="text-sm text-gray-300 space-y-2 mb-8">
+                {item.benefits.slice(0, 3).map((b, i) => (
+                  <li key={i}>✔ {b}</li>
+                ))}
+              </ul>
+
+              {/* APPLY BUTTON */}
+              <button
+                onClick={() =>
+                  handleApply(item, selectedMode, selectedDuration)
+                }
+                className="w-full bg-orange-500 text-black
+  py-2 cursor-pointer text-sm rounded-md font-medium
+  transition hover:bg-orange-600 active:scale-95"
+              >
+                Apply
+              </button>
             </div>
-          ))}
-        </div>
+          );
+        })}
       </div>
 
-      {/* INTERNSHIP TYPES */}
-      <div className="bg-[#0f0f0f] py-24 px-6">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold mb-14">
-            Internship <span className="text-orange-500">Programs</span>
-          </h2>
-
-          <div className="space-y-16">
-
-            {/* College Internship */}
-            <div className="bg-[#151515] p-10 rounded-xl border-l-4 border-orange-500">
-              <h3 className="text-2xl font-semibold mb-4">College Internship</h3>
-              <p className="text-gray-400 mb-6">
-                Duration: <span className="text-white">1–2–3–4–6 Months</span> |
-                Mode: <span className="text-white">Online / Offline</span>
-              </p>
-              <ul className="grid md:grid-cols-2 gap-4 text-gray-300">
-                <li>• Hands-on Learning</li>
-                <li>• Skill Development</li>
-                <li>• Collaborative Work Culture</li>
-                <li>• Diverse Live Projects</li>
-              </ul>
-            </div>
-
-            {/* Job Oriented Internship */}
-            <div className="bg-[#151515] p-10 rounded-xl border-l-4 border-orange-500">
-              <h3 className="text-2xl font-semibold mb-4">Job Oriented Internship</h3>
-              <p className="text-gray-400 mb-6">
-                Designed for students & freshers to bridge the gap between
-                academics and industry needs.
-              </p>
-              <ul className="grid md:grid-cols-2 gap-4 text-gray-300">
-                <li>• Targeted Skill Development</li>
-                <li>• Professional Mentorship</li>
-                <li>• Strong Resume Alignment</li>
-                <li>• Higher Employment Chances</li>
-              </ul>
-            </div>
-
-            {/* Summer Internship */}
-            <div className="bg-[#151515] p-10 rounded-xl border-l-4 border-orange-500">
-              <h3 className="text-2xl font-semibold mb-4">Summer Internship</h3>
-              <p className="text-gray-400 mb-6">
-                Duration: <span className="text-white">2–3 Months</span> |
-                Ideal for productive & skill-focused summers.
-              </p>
-              <ul className="grid md:grid-cols-2 gap-4 text-gray-300">
-                <li>• Career Clarity</li>
-                <li>• Resume & Portfolio Boost</li>
-                <li>• Confidence Building</li>
-                <li>• Multi-domain Exposure</li>
-              </ul>
-            </div>
-
-          </div>
-        </div>
-      </div>
-
-      {/* TECHNOLOGIES */}
-      <div className="max-w-6xl mx-auto py-24 px-6">
-        <h2 className="text-3xl font-bold mb-14">
-          Technologies <span className="text-orange-500">You Will Work With</span>
+      {/* FOOTER CTA */}
+      <div className="py-20 bg-gradient-to-r from-zinc-900 to-black text-center">
+        <h2 className="text-3xl font-bold mb-4">
+          Take the First Step Towards Your{" "}
+          <span className="text-orange-500">Career</span>
         </h2>
-
-        <div className="flex flex-wrap gap-4 text-sm">
-          {[
-            "Python", "JavaScript", "Java", "C++", "PHP",
-            "HTML5", "CSS3", "Go", "Ruby",
-          ].map((tech, i) => (
-            <span
-              key={i}
-              className="px-5 py-2 rounded-full bg-[#151515] border border-white/10
-              hover:border-orange-500 hover:text-orange-500 transition"
-            >
-              {tech}
-            </span>
-          ))}
-        </div>
+        <p className="text-gray-400">
+          Choose your internship, apply easily, and get started.
+        </p>
       </div>
-
-      {/* CONTACT + CTA */}
-      <div className="bg-gradient-to-r from-[#1a1a1a] to-[#111] py-24 px-6">
-        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-
-          <div>
-            <h2 className="text-3xl font-bold mb-6">
-              Ready to <span className="text-orange-500">Enroll?</span>
-            </h2>
-            <p className="text-gray-400 mb-6">
-              Give your career the right direction with industry-focused
-              internships at ArraySoft Technology.
-            </p>
-            <p className="text-gray-300">
-              📞 +91 73831 09386 <br />
-              ✉ info@arraysofttechnology.com <br />
-              📍 Gandhinagar, Gujarat
-            </p>
-          </div>
-
-          <div className="flex flex-col gap-4">
-            <Link
-              to="/contact"
-              className="bg-orange-500 text-black text-center py-4 rounded-lg
-              font-semibold text-lg hover:bg-orange-600 transition"
-            >
-              Internship Registration – Enroll Now
-            </Link>
-
-            <a
-              href="mailto:info@arraysofttechnology.com"
-              className="border border-orange-500 text-orange-500 text-center py-4
-              rounded-lg font-semibold hover:bg-orange-500 hover:text-black transition"
-            >
-              Apply via Email
-            </a>
-          </div>
-
-        </div>
-      </div>
-
     </section>
   );
 };

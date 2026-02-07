@@ -6,22 +6,63 @@ const ChatBot = ({ onClose }) => {
     { from: "bot", text: "Hi 👋 Welcome to ArraySoft. How can I help you?" },
   ]);
   const [input, setInput] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const sendMessage = () => {
-    if (!input.trim()) return;
+  const sendMessage = async () => {
+    if (!input.trim() || loading) return;
 
+    const userMessage = input;
+    setInput("");
+
+    // show user message instantly
     setMessages((prev) => [
       ...prev,
-      { from: "user", text: input },
-      { from: "bot", text: "Thanks for your message! Our team will contact you soon 😊" },
+      { from: "user", text: userMessage },
     ]);
-    setInput("");
+
+    setLoading(true);
+
+    try {
+      const res = await fetch(
+        `${import.meta.env.VITE_Backend_url}/aiagent/chat`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ userInput: userMessage }),
+        }
+      );
+
+      const data = await res.json();
+
+      setMessages((prev) => [
+        ...prev,
+        {
+          from: "bot",
+          text:
+            data?.recommendation ||
+            "I can help you with services, courses or internships.",
+        },
+      ]);
+    } catch (err) {
+      setMessages((prev) => [
+        ...prev,
+        {
+          from: "bot",
+          text: "Something went wrong. Please try again.",
+        },
+      ]);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
-    <div className="fixed bottom-24 right-6 w-80 h-[420px] bg-[#0f0f0f] 
-    border border-white/10 rounded-xl shadow-xl z-50 flex flex-col">
-
+    <div
+      className="fixed bottom-24 right-6 w-80 h-[420px] bg-[#0f0f0f]
+      border border-white/10 rounded-xl shadow-xl z-50 flex flex-col"
+    >
       {/* Header */}
       <div className="flex items-center justify-between px-4 py-3 border-b border-white/10">
         <div className="flex items-center gap-2">
@@ -47,6 +88,12 @@ const ChatBot = ({ onClose }) => {
             {msg.text}
           </div>
         ))}
+
+        {loading && (
+          <div className="bg-[#1a1a1a] text-gray-400 px-3 py-2 rounded-lg w-fit">
+            Typing...
+          </div>
+        )}
       </div>
 
       {/* Input */}
@@ -56,10 +103,12 @@ const ChatBot = ({ onClose }) => {
           onChange={(e) => setInput(e.target.value)}
           placeholder="Type your message..."
           className="flex-1 bg-[#1a1a1a] px-3 py-2 text-white rounded outline-none text-sm"
+          onKeyDown={(e) => e.key === "Enter" && sendMessage()}
         />
         <button
           onClick={sendMessage}
-          className="bg-orange-500 px-3 rounded text-white"
+          className="bg-orange-500 px-3 rounded text-white disabled:opacity-60"
+          disabled={loading}
         >
           <FaPaperPlane />
         </button>

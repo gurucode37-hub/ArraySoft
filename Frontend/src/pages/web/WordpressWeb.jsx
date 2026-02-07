@@ -1,76 +1,117 @@
+import { wordpressWebData } from "../../../data/web";
 import { Link } from "react-router-dom";
+import { FaWordpress, FaPlug, FaTools } from "react-icons/fa";
 
 const WordpressWeb = () => {
+  const { hero, sections, cta } = wordpressWebData;
+
   return (
-    <section className="bg-black text-white">
+    <section className="bg-black text-white overflow-hidden">
 
-      <div className="bg-gradient-to-r from-[#0f0f0f] to-[#1a1a1a] py-28 px-6">
+      {/* HERO */}
+      <div className="py-28 px-6 bg-gradient-to-br from-sky-500/20 via-black to-indigo-500/20">
         <div className="max-w-6xl mx-auto">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">
-            WordPress <span className="text-orange-500">Website Development</span>
-          </h1>
-          <p className="text-gray-400 leading-relaxed max-w-3xl">
-            We build beautiful, user-friendly WordPress websites customized to your brand with scalable and easy-to-manage layouts.
-          </p>
+          <div className="flex items-center gap-4 mb-6">
+            <FaWordpress className="text-sky-500 text-5xl" />
+            <h1 className="text-5xl font-bold">{hero.title}</h1>
+          </div>
+          <p className="text-gray-300 max-w-3xl">{hero.desc}</p>
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto py-24 px-6 grid md:grid-cols-2 gap-16">
-        <div>
-          <h2 className="text-2xl font-semibold mb-6">
-            Why Choose <span className="text-orange-500">WordPress?</span>
-          </h2>
-          <ul className="space-y-4 text-gray-300">
-            <li>• Easy Content Management</li>
-            <li>• Custom Themes</li>
-            <li>• Plugin Integration</li>
-            <li>• SEO-Friendly Structure</li>
-            <li>• E-Commerce Ready</li>
-          </ul>
-        </div>
+      {/* WHY */}
+      <div className="max-w-6xl mx-auto py-24 px-6">
+        <h2 className="text-3xl font-bold mb-14 text-center">
+          {sections.why.title.split(" ")[0]}{" "}
+          <span className="text-sky-500">
+            {sections.why.title.split(" ").slice(1).join(" ")}
+          </span>
+        </h2>
 
-        <div className="bg-[#151515] p-10 rounded-xl border border-white/10">
-          <h3 className="text-xl font-semibold mb-6">
-            What We <span className="text-orange-500">Deliver</span>
-          </h3>
-          <ul className="space-y-4 text-gray-400">
-            <li>✔ Custom Theme Setup</li>
-            <li>✔ Plugin Configuration</li>
-            <li>✔ Responsive Layout</li>
-            <li>✔ SEO Optimization</li>
-            <li>✔ Training & Support</li>
-          </ul>
+        <div className="grid md:grid-cols-3 gap-10">
+          {sections.why.cards.map((item, i) => (
+            <div
+              key={i}
+              className="bg-[#151515] p-8 rounded-xl border border-white/10
+              hover:border-sky-500 hover:-translate-y-2 transition"
+            >
+              <FaPlug className="text-sky-500 text-3xl mb-5" />
+              <p className="text-gray-300">{item}</p>
+            </div>
+          ))}
         </div>
       </div>
 
+      {/* DELIVER */}
       <div className="bg-[#0f0f0f] py-24 px-6">
+        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+          <div>
+            <h2 className="text-3xl font-bold mb-10">
+              {sections.deliver.title.split(" ")[0]}{" "}
+              <span className="text-sky-500">
+                {sections.deliver.title.split(" ").slice(1).join(" ")}
+              </span>
+            </h2>
+
+            <ul className="space-y-5 text-gray-300">
+              {sections.deliver.list.map((item, i) => (
+                <li
+                  key={i}
+                  className="hover:translate-x-2 transition"
+                >
+                  • {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="bg-gradient-to-br from-sky-500/20 to-indigo-500/20
+          p-12 rounded-xl border border-white/10">
+            <FaTools className="text-sky-500 text-4xl mb-6" />
+            <p className="text-gray-300 leading-relaxed">
+              {sections.deliver.sideText}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* PROCESS */}
+      <div className="py-24 px-6">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold mb-14">
-            Our <span className="text-orange-500">WP Workflow</span>
+          <h2 className="text-3xl font-bold mb-14 text-center">
+            Our <span className="text-sky-500">{sections.process.title}</span>
           </h2>
+
           <div className="grid md:grid-cols-4 gap-8 text-center">
-            {[
-              "Planning",
-              "Design",
-              "Setup & Customization",
-              "Launch",
-            ].map((step, i) => (
-              <div className="bg-[#1a1a1a] p-6 rounded-lg border border-white/5 hover:border-orange-500/50 hover:-translate-y-2 transition">
-                <div className="text-orange-500 text-2xl font-bold mb-4">0{i + 1}</div>
-                <p className="text-sm text-gray-300">{step}</p>
+            {sections.process.steps.map((step, i) => (
+              <div
+                key={i}
+                className="bg-[#1a1a1a] p-6 rounded-lg border border-white/5
+                hover:border-sky-500 hover:-translate-y-2 transition"
+              >
+                <div className="text-sky-500 text-2xl font-bold mb-4">
+                  0{i + 1}
+                </div>
+                <p className="text-gray-300">{step}</p>
               </div>
             ))}
           </div>
         </div>
       </div>
 
+      {/* CTA */}
       <div className="py-24 px-6">
-        <div className="max-w-6xl mx-auto bg-gradient-to-r from-[#1a1a1a] to-[#111] p-14 rounded-xl flex flex-col md:flex-row items-center justify-between gap-10">
-          <h2 className="text-3xl font-bold">
-            Need a <span className="text-orange-500">WordPress Site?</span>
+        <div className="max-w-6xl mx-auto bg-gradient-to-r from-sky-500 to-indigo-500
+        p-14 rounded-xl flex flex-col md:flex-row items-center justify-between gap-10">
+          <h2 className="text-3xl font-bold text-black">
+            {cta.text}
           </h2>
-          <Link to="/contact" className="bg-orange-500 text-black px-10 py-4 rounded text-lg font-semibold hover:bg-orange-600 transition">
-            Contact Us
+          <Link
+            to={cta.link}
+            className="bg-black text-white px-10 py-4 rounded
+            text-lg font-semibold hover:scale-105 transition"
+          >
+            {cta.button}
           </Link>
         </div>
       </div>
