@@ -36,6 +36,9 @@ import AdminUser from "./admin/AdminUsers.jsx";
 import AdminRequests from "./admin/AdminRequests.jsx";
 import AdminProfile from "./admin/AdminProfile.jsx";
 import AdminCourses from "./admin/AdminCourses.jsx";
+import AdminApp from "./admin/AdminApp.jsx";
+import AdminWeb from "./admin/AdminWeb.jsx";
+import AdminIntern from "./admin/AdminIntern.jsx";
 
 import "./App.css";
 
@@ -78,6 +81,9 @@ const App = () => {
           <Route path="/admin/users" element={<AdminUser />} />
           <Route path="/admin/requests" element={<AdminRequests />} />
           <Route path="/admin/courses" element={<AdminCourses />} />
+          <Route path="/admin/applications" element={<AdminApp />} />
+          <Route path="/admin/website" element={<AdminWeb />} />
+          <Route path="/admin/internship" element={<AdminIntern />} />
 
         </Routes>
       </div>

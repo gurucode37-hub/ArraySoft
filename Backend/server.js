@@ -7,6 +7,7 @@ import adminRoute from "./routes/admin.js";
 import paymentRoute from "./routes/payment.js";
 import reqRoute from "./routes/userReq.js";
 import aiRoute from "./routes/bot.js";
+import appWebInternRoute from "./routes/app-web-intern.js";
 const app = express();
 
 app.use(cors());
@@ -17,6 +18,7 @@ app.use("/admin", adminRoute);
 app.use("/payment", paymentRoute);
 app.use("/form", reqRoute);
 app.use("/aiagent", aiRoute);
+app.use("/my", appWebInternRoute);
 
 db();
 const port = process.env.PORT;
