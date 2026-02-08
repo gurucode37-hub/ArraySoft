@@ -6,16 +6,22 @@ const WordpressWeb = () => {
   const { hero, sections, cta } = wordpressWebData;
 
   return (
-    <section className="bg-black text-white overflow-hidden">
+    <section className="bg-white text-black dark:bg-black dark:text-white overflow-hidden">
 
       {/* HERO */}
-      <div className="py-28 px-6 bg-gradient-to-br from-sky-500/20 via-black to-indigo-500/20">
+      <div
+        className="py-28 px-6 bg-gradient-to-br
+        from-sky-500/20 via-white to-indigo-300/20
+        dark:from-sky-500/20 dark:via-black dark:to-indigo-500/20"
+      >
         <div className="max-w-6xl mx-auto">
           <div className="flex items-center gap-4 mb-6">
             <FaWordpress className="text-sky-500 text-5xl" />
             <h1 className="text-5xl font-bold">{hero.title}</h1>
           </div>
-          <p className="text-gray-300 max-w-3xl">{hero.desc}</p>
+          <p className="text-gray-700 dark:text-gray-300 max-w-3xl">
+            {hero.desc}
+          </p>
         </div>
       </div>
 
@@ -32,18 +38,22 @@ const WordpressWeb = () => {
           {sections.why.cards.map((item, i) => (
             <div
               key={i}
-              className="bg-[#151515] p-8 rounded-xl border border-white/10
-              hover:border-sky-500 hover:-translate-y-2 transition"
+              className="p-8 rounded-xl border transition
+              bg-gray-100 border-black/10
+              dark:bg-[#151515] dark:border-white/10
+              hover:border-sky-500 hover:-translate-y-2"
             >
               <FaPlug className="text-sky-500 text-3xl mb-5" />
-              <p className="text-gray-300">{item}</p>
+              <p className="text-gray-700 dark:text-gray-300">
+                {item}
+              </p>
             </div>
           ))}
         </div>
       </div>
 
       {/* DELIVER */}
-      <div className="bg-[#0f0f0f] py-24 px-6">
+      <div className="py-24 px-6 bg-gray-100 dark:bg-[#0f0f0f]">
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
           <div>
             <h2 className="text-3xl font-bold mb-10">
@@ -53,7 +63,7 @@ const WordpressWeb = () => {
               </span>
             </h2>
 
-            <ul className="space-y-5 text-gray-300">
+            <ul className="space-y-5 text-gray-700 dark:text-gray-300">
               {sections.deliver.list.map((item, i) => (
                 <li
                   key={i}
@@ -65,10 +75,13 @@ const WordpressWeb = () => {
             </ul>
           </div>
 
-          <div className="bg-gradient-to-br from-sky-500/20 to-indigo-500/20
-          p-12 rounded-xl border border-white/10">
+          <div
+            className="p-12 rounded-xl border
+            bg-gradient-to-br from-sky-500/20 to-indigo-500/20
+            border-black/10 dark:border-white/10"
+          >
             <FaTools className="text-sky-500 text-4xl mb-6" />
-            <p className="text-gray-300 leading-relaxed">
+            <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
               {sections.deliver.sideText}
             </p>
           </div>
@@ -86,13 +99,17 @@ const WordpressWeb = () => {
             {sections.process.steps.map((step, i) => (
               <div
                 key={i}
-                className="bg-[#1a1a1a] p-6 rounded-lg border border-white/5
-                hover:border-sky-500 hover:-translate-y-2 transition"
+                className="p-6 rounded-lg border transition
+                bg-gray-100 border-black/10
+                dark:bg-[#1a1a1a] dark:border-white/5
+                hover:border-sky-500 hover:-translate-y-2"
               >
                 <div className="text-sky-500 text-2xl font-bold mb-4">
                   0{i + 1}
                 </div>
-                <p className="text-gray-300">{step}</p>
+                <p className="text-gray-700 dark:text-gray-300">
+                  {step}
+                </p>
               </div>
             ))}
           </div>
@@ -101,8 +118,11 @@ const WordpressWeb = () => {
 
       {/* CTA */}
       <div className="py-24 px-6">
-        <div className="max-w-6xl mx-auto bg-gradient-to-r from-sky-500 to-indigo-500
-        p-14 rounded-xl flex flex-col md:flex-row items-center justify-between gap-10">
+        <div
+          className="max-w-6xl mx-auto bg-gradient-to-r
+          from-sky-500 to-indigo-500 p-14 rounded-xl
+          flex flex-col md:flex-row items-center justify-between gap-10"
+        >
           <h2 className="text-3xl font-bold text-black">
             {cta.text}
           </h2>

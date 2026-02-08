@@ -5,7 +5,6 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const AuthModal = ({ onClose }) => {
-  // login | signup | verify | forgot
   const [type, setType] = useState("login");
 
   const [formData, setFormData] = useState({
@@ -71,14 +70,14 @@ const AuthModal = ({ onClose }) => {
 
       if (res.data.success) {
         toast.success(res.data.message);
-        setType("verify"); // go to OTP screen
+        setType("verify");
       }
     } catch (error) {
       toast.error(error.response?.data?.message || "Signup failed");
     }
   };
 
-  /* ================= VERIFY EMAIL (OTP) ================= */
+  /* ================= VERIFY EMAIL ================= */
   const handleVerifyEmail = async (e) => {
     e.preventDefault();
     try {
@@ -105,7 +104,7 @@ const AuthModal = ({ onClose }) => {
     }
   };
 
-  /* ================= FORGOT PASSWORD (DIRECT) ================= */
+  /* ================= FORGOT PASSWORD ================= */
   const handleForgotPassword = async (e) => {
     e.preventDefault();
 
@@ -137,7 +136,8 @@ const AuthModal = ({ onClose }) => {
     <div className="fixed inset-0 bg-black/70 z-[100] flex items-center justify-center px-4">
       <ToastContainer position="top-right" autoClose={2000} />
 
-      <div className="bg-[#0f0f0f] w-full max-w-md rounded-xl p-8 border border-white/10 relative">
+      <div className="bg-white dark:bg-[#0f0f0f] w-full max-w-md rounded-xl p-8 border border-black/10 dark:border-white/10 relative">
+
         {/* Close */}
         <button
           onClick={() => {
@@ -145,13 +145,13 @@ const AuthModal = ({ onClose }) => {
             setType("login");
             onClose();
           }}
-          className="absolute top-4 right-4 text-gray-400 hover:text-white"
+          className="absolute top-4 right-4 text-gray-500 dark:text-gray-400 hover:text-black dark:hover:text-white"
         >
           <FaTimes />
         </button>
 
         {/* Heading */}
-        <h2 className="text-2xl font-bold mb-6 text-white text-center">
+        <h2 className="text-2xl font-bold mb-6 text-black dark:text-white text-center">
           {type === "login" && "Login"}
           {type === "signup" && "Sign Up"}
           {type === "verify" && "Verify Email"}
@@ -168,7 +168,9 @@ const AuthModal = ({ onClose }) => {
               placeholder="Email Address"
               value={formData.email}
               onChange={handleChange}
-              className="w-full text-white bg-[#1a1a1a] p-3 rounded border border-white/10 outline-none focus:border-orange-500"
+              className="w-full text-black dark:text-white bg-gray-100 dark:bg-[#1a1a1a]
+              p-3 rounded border border-black/10 dark:border-white/10
+              outline-none focus:border-orange-500"
               required
             />
 
@@ -178,13 +180,15 @@ const AuthModal = ({ onClose }) => {
               placeholder="Password"
               value={formData.password}
               onChange={handleChange}
-              className="w-full text-white bg-[#1a1a1a] p-3 rounded border border-white/10 outline-none focus:border-orange-500"
+              className="w-full text-black dark:text-white bg-gray-100 dark:bg-[#1a1a1a]
+              p-3 rounded border border-black/10 dark:border-white/10
+              outline-none focus:border-orange-500"
               required
             />
 
             <p
               onClick={() => setType("forgot")}
-              className="text-sm text-orange-400 cursor-pointer hover:underline text-right"
+              className="text-sm text-orange-500 cursor-pointer hover:underline text-right"
             >
               Forgot password?
             </p>
@@ -196,7 +200,7 @@ const AuthModal = ({ onClose }) => {
               Login
             </button>
 
-            <p className="text-sm text-center text-gray-400 mt-4">
+            <p className="text-sm text-center text-gray-500 dark:text-gray-400 mt-4">
               Don’t have an account?
               <button
                 type="button"
@@ -212,35 +216,26 @@ const AuthModal = ({ onClose }) => {
         {/* SIGNUP */}
         {type === "signup" && (
           <form className="space-y-4" onSubmit={handleSignup}>
-            <input
-              type="text"
-              name="username"
-              placeholder="Full Name"
-              value={formData.username}
-              onChange={handleChange}
-              className="w-full text-white bg-[#1a1a1a] p-3 rounded border border-white/10 outline-none focus:border-orange-500"
-              required
-            />
-
-            <input
-              type="email"
-              name="email"
-              placeholder="Email Address"
-              value={formData.email}
-              onChange={handleChange}
-              className="w-full text-white bg-[#1a1a1a] p-3 rounded border border-white/10 outline-none focus:border-orange-500"
-              required
-            />
-
-            <input
-              type="password"
-              name="password"
-              placeholder="Password"
-              value={formData.password}
-              onChange={handleChange}
-              className="w-full text-white bg-[#1a1a1a] p-3 rounded border border-white/10 outline-none focus:border-orange-500"
-              required
-            />
+            {["username", "email", "password"].map((field) => (
+              <input
+                key={field}
+                type={field === "password" ? "password" : "text"}
+                name={field}
+                placeholder={
+                  field === "username"
+                    ? "Full Name"
+                    : field === "email"
+                    ? "Email Address"
+                    : "Password"
+                }
+                value={formData[field]}
+                onChange={handleChange}
+                className="w-full text-black dark:text-white bg-gray-100 dark:bg-[#1a1a1a]
+                p-3 rounded border border-black/10 dark:border-white/10
+                outline-none focus:border-orange-500"
+                required
+              />
+            ))}
 
             <button
               type="submit"
@@ -249,7 +244,7 @@ const AuthModal = ({ onClose }) => {
               Sign Up
             </button>
 
-            <p className="text-sm text-center text-gray-400 mt-4">
+            <p className="text-sm text-center text-gray-500 dark:text-gray-400 mt-4">
               Already have an account?
               <button
                 type="button"
@@ -262,10 +257,10 @@ const AuthModal = ({ onClose }) => {
           </form>
         )}
 
-        {/* VERIFY EMAIL */}
+        {/* VERIFY */}
         {type === "verify" && (
           <form className="space-y-4" onSubmit={handleVerifyEmail}>
-            <p className="text-sm text-gray-400 text-center">
+            <p className="text-sm text-gray-500 dark:text-gray-400 text-center">
               Enter the OTP sent to your email
             </p>
 
@@ -275,7 +270,9 @@ const AuthModal = ({ onClose }) => {
               placeholder="Enter OTP"
               value={formData.otp}
               onChange={handleChange}
-              className="w-full text-white bg-[#1a1a1a] p-3 rounded border border-white/10 outline-none focus:border-orange-500"
+              className="w-full text-black dark:text-white bg-gray-100 dark:bg-[#1a1a1a]
+              p-3 rounded border border-black/10 dark:border-white/10
+              outline-none focus:border-orange-500"
               required
             />
 
@@ -288,28 +285,27 @@ const AuthModal = ({ onClose }) => {
           </form>
         )}
 
-        {/* FORGOT PASSWORD */}
+        {/* FORGOT */}
         {type === "forgot" && (
           <form className="space-y-4" onSubmit={handleForgotPassword}>
-            <input
-              type="email"
-              name="email"
-              placeholder="Registered Email"
-              value={formData.email}
-              onChange={handleChange}
-              className="w-full text-white bg-[#1a1a1a] p-3 rounded border border-white/10 outline-none focus:border-orange-500"
-              required
-            />
-
-            <input
-              type="password"
-              name="password"
-              placeholder="New Password"
-              value={formData.password}
-              onChange={handleChange}
-              className="w-full text-white bg-[#1a1a1a] p-3 rounded border border-white/10 outline-none focus:border-orange-500"
-              required
-            />
+            {["email", "password"].map((field) => (
+              <input
+                key={field}
+                type={field === "password" ? "password" : "email"}
+                name={field}
+                placeholder={
+                  field === "email"
+                    ? "Registered Email"
+                    : "New Password"
+                }
+                value={formData[field]}
+                onChange={handleChange}
+                className="w-full text-black dark:text-white bg-gray-100 dark:bg-[#1a1a1a]
+                p-3 rounded border border-black/10 dark:border-white/10
+                outline-none focus:border-orange-500"
+                required
+              />
+            ))}
 
             <button
               type="submit"
@@ -320,7 +316,7 @@ const AuthModal = ({ onClose }) => {
 
             <p
               onClick={() => setType("login")}
-              className="text-sm text-center text-orange-400 cursor-pointer hover:underline"
+              className="text-sm text-center text-orange-500 cursor-pointer hover:underline"
             >
               Back to Login
             </p>

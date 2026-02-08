@@ -14,12 +14,7 @@ const ChatBot = ({ onClose }) => {
     const userMessage = input;
     setInput("");
 
-    // show user message instantly
-    setMessages((prev) => [
-      ...prev,
-      { from: "user", text: userMessage },
-    ]);
-
+    setMessages((prev) => [...prev, { from: "user", text: userMessage }]);
     setLoading(true);
 
     try {
@@ -27,9 +22,7 @@ const ChatBot = ({ onClose }) => {
         `${import.meta.env.VITE_Backend_url}/aiagent/chat`,
         {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ userInput: userMessage }),
         }
       );
@@ -45,13 +38,10 @@ const ChatBot = ({ onClose }) => {
             "I can help you with services, courses or internships.",
         },
       ]);
-    } catch (err) {
+    } catch {
       setMessages((prev) => [
         ...prev,
-        {
-          from: "bot",
-          text: "Something went wrong. Please try again.",
-        },
+        { from: "bot", text: "Something went wrong. Please try again." },
       ]);
     } finally {
       setLoading(false);
@@ -60,16 +50,24 @@ const ChatBot = ({ onClose }) => {
 
   return (
     <div
-      className="fixed bottom-24 right-6 w-80 h-[420px] bg-[#0f0f0f]
-      border border-white/10 rounded-xl shadow-xl z-50 flex flex-col"
+      className="fixed bottom-24 right-6 w-80 h-[420px]
+      bg-white dark:bg-[#0f0f0f]
+      border border-black/10 dark:border-white/10
+      rounded-xl shadow-xl z-50 flex flex-col"
     >
       {/* Header */}
-      <div className="flex items-center justify-between px-4 py-3 border-b border-white/10">
+      <div className="flex items-center justify-between px-4 py-3
+        border-b border-black/10 dark:border-white/10">
         <div className="flex items-center gap-2">
           <FaRobot className="text-orange-500" />
-          <span className="font-semibold">ArraySoft AI</span>
+          <span className="font-semibold text-black dark:text-white">
+            ArraySoft AI
+          </span>
         </div>
-        <button onClick={onClose} className="text-gray-400 hover:text-white">
+        <button
+          onClick={onClose}
+          className="text-gray-500 dark:text-gray-400 hover:text-black dark:hover:text-white"
+        >
           <FaTimes />
         </button>
       </div>
@@ -81,7 +79,7 @@ const ChatBot = ({ onClose }) => {
             key={i}
             className={`max-w-[80%] px-3 py-2 rounded-lg ${
               msg.from === "bot"
-                ? "bg-[#1a1a1a] text-gray-300 self-start"
+                ? "bg-gray-100 text-gray-700 dark:bg-[#1a1a1a] dark:text-gray-300 self-start"
                 : "bg-orange-500 text-white self-end ml-auto"
             }`}
           >
@@ -90,25 +88,36 @@ const ChatBot = ({ onClose }) => {
         ))}
 
         {loading && (
-          <div className="bg-[#1a1a1a] text-gray-400 px-3 py-2 rounded-lg w-fit">
+          <div
+            className="px-3 py-2 rounded-lg w-fit
+            bg-gray-100 text-gray-500
+            dark:bg-[#1a1a1a] dark:text-gray-400"
+          >
             Typing...
           </div>
         )}
       </div>
 
       {/* Input */}
-      <div className="p-3 border-t border-white/10 flex gap-2">
+      <div
+        className="p-3 border-t
+        border-black/10 dark:border-white/10 flex gap-2"
+      >
         <input
           value={input}
           onChange={(e) => setInput(e.target.value)}
           placeholder="Type your message..."
-          className="flex-1 bg-[#1a1a1a] px-3 py-2 text-white rounded outline-none text-sm"
+          className="flex-1 px-3 py-2 rounded outline-none text-sm
+          bg-gray-100 text-black placeholder-gray-500
+          dark:bg-[#1a1a1a] dark:text-white dark:placeholder-gray-400"
           onKeyDown={(e) => e.key === "Enter" && sendMessage()}
         />
+
         <button
           onClick={sendMessage}
-          className="bg-orange-500 px-3 rounded text-white disabled:opacity-60"
           disabled={loading}
+          className="bg-orange-500 px-3 rounded text-white
+          hover:bg-orange-600 disabled:opacity-60"
         >
           <FaPaperPlane />
         </button>

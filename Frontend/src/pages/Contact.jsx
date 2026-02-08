@@ -34,12 +34,12 @@ const Contact = () => {
   };
 
   return (
-    <section className="bg-black text-white">
+    <section className="bg-white dark:bg-black text-black dark:text-white">
       <ToastContainer position="top-right" autoClose={2000} />
 
       {/* MAP */}
       <div className="px-6 pt-28 pb-20">
-        <div className="max-w-7xl mx-auto overflow-hidden rounded-xl border border-white/10">
+        <div className="max-w-7xl mx-auto overflow-hidden rounded-xl border border-black/10 dark:border-white/10">
           <iframe
             title={mapData.title}
             src={mapData.url}
@@ -51,15 +51,22 @@ const Contact = () => {
 
       {/* CONTACT INFO */}
       <div className="px-6 pb-24">
-        <div className="max-w-6xl mx-auto bg-[#0f0f0f] rounded-xl p-12
-          grid md:grid-cols-3 gap-10 text-center border border-white/10">
+        <div
+          className="max-w-6xl mx-auto 
+          bg-gray-100 dark:bg-[#0f0f0f] 
+          rounded-xl p-12
+          grid md:grid-cols-3 gap-10 text-center 
+          border border-black/10 dark:border-white/10"
+        >
           {contactInfo.map((item) => {
             const Icon = item.icon;
             return (
               <div key={item.id}>
                 <Icon className="text-orange-500 text-3xl mx-auto mb-4" />
-                <p className="font-semibold mb-1">{item.title}</p>
-                <p className="text-gray-400 text-sm whitespace-pre-line">
+                <p className="font-semibold mb-1">
+                  {item.title}
+                </p>
+                <p className="text-gray-600 dark:text-gray-400 text-sm whitespace-pre-line">
                   {item.value}
                 </p>
               </div>
@@ -70,7 +77,12 @@ const Contact = () => {
 
       {/* FORM */}
       <div className="px-6 pb-28">
-        <div className="max-w-4xl mx-auto bg-[#0f0f0f] rounded-xl p-12 border border-white/10">
+        <div
+          className="max-w-4xl mx-auto 
+          bg-gray-100 dark:bg-[#0f0f0f] 
+          rounded-xl p-12 
+          border border-black/10 dark:border-white/10"
+        >
           <h2 className="text-3xl font-bold mb-10 text-center">
             Get In <span className="text-orange-500">Touch</span>
           </h2>
@@ -84,8 +96,12 @@ const Contact = () => {
                 onChange={handleChange}
                 placeholder="Your Name"
                 required
-                className="bg-[#1a1a1a] p-4 rounded border border-white/10 outline-none focus:border-orange-500"
+                className="bg-white dark:bg-[#1a1a1a] 
+                p-4 rounded border 
+                border-black/10 dark:border-white/10 
+                outline-none focus:border-orange-500"
               />
+
               <input
                 type="email"
                 name="email"
@@ -93,7 +109,10 @@ const Contact = () => {
                 onChange={handleChange}
                 placeholder="Email Address"
                 required
-                className="bg-[#1a1a1a] p-4 rounded border border-white/10 outline-none focus:border-orange-500"
+                className="bg-white dark:bg-[#1a1a1a] 
+                p-4 rounded border 
+                border-black/10 dark:border-white/10 
+                outline-none focus:border-orange-500"
               />
             </div>
 
@@ -104,7 +123,10 @@ const Contact = () => {
               onChange={handleChange}
               placeholder="Phone Number"
               required
-              className="bg-[#1a1a1a] p-4 rounded border border-white/10 outline-none focus:border-orange-500"
+              className="bg-white dark:bg-[#1a1a1a] 
+              p-4 rounded border 
+              border-black/10 dark:border-white/10 
+              outline-none focus:border-orange-500"
             />
 
             <textarea
@@ -114,7 +136,10 @@ const Contact = () => {
               onChange={handleChange}
               placeholder="Your Message"
               required
-              className="bg-[#1a1a1a] p-4 rounded border border-white/10 outline-none focus:border-orange-500 resize-none"
+              className="bg-white dark:bg-[#1a1a1a] 
+              p-4 rounded border 
+              border-black/10 dark:border-white/10 
+              outline-none focus:border-orange-500 resize-none"
             />
 
             <button

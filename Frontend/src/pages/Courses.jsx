@@ -66,13 +66,15 @@ const Courses = () => {
   };
 
   return (
-    <section className="bg-black text-white">
+    <section className="bg-white dark:bg-black text-black dark:text-white">
       {/* HERO */}
-      <div className="py-28 text-center bg-gradient-to-br from-zinc-900 to-black">
+      <div className="py-28 text-center bg-gradient-to-br 
+        from-gray-100 to-white 
+        dark:from-zinc-900 dark:to-black">
         <h1 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">
           Professional <span className="text-orange-500">Courses</span>
         </h1>
-        <p className="text-gray-400 max-w-3xl mx-auto">
+        <p className="text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
           Learn industry-ready skills with real-world projects and certification.
         </p>
       </div>
@@ -82,15 +84,20 @@ const Courses = () => {
         {courses.map((course) => (
           <div
             key={course.id}
-            className="group bg-zinc-900/60 backdrop-blur rounded-2xl p-10
-            border border-white/10 hover:border-orange-500/50
-            transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-orange-500/10"
+            className="group 
+            bg-gray-100 dark:bg-zinc-900/60 
+            backdrop-blur rounded-2xl p-10
+            border border-black/10 dark:border-white/10
+            hover:border-orange-500/50
+            transition-all duration-500
+            hover:-translate-y-2
+            hover:shadow-2xl hover:shadow-orange-500/10"
           >
             <h2 className="text-2xl font-semibold mb-5">
               {course.title}
             </h2>
 
-            <ul className="space-y-2 text-gray-400 mb-8">
+            <ul className="space-y-2 text-gray-600 dark:text-gray-400 mb-8">
               {course.syllabus.slice(0, 5).map((item, i) => (
                 <li key={i}>• {item}</li>
               ))}
@@ -120,11 +127,13 @@ const Courses = () => {
       </div>
 
       {/* CTA */}
-      <div className="py-20 text-center bg-gradient-to-r from-zinc-900 to-black">
+      <div className="py-20 text-center bg-gradient-to-r 
+        from-gray-100 to-white 
+        dark:from-zinc-900 dark:to-black">
         <h2 className="text-3xl font-bold mb-3">
           Start Your <span className="text-orange-500">IT Career</span>
         </h2>
-        <p className="text-gray-400">
+        <p className="text-gray-600 dark:text-gray-400">
           Learn. Build. Get Certified. Get Hired.
         </p>
       </div>

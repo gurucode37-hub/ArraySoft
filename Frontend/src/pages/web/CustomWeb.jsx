@@ -6,15 +6,20 @@ const CustomWeb = () => {
   const { hero, sections, cta } = customWebData;
 
   return (
-    <section className="bg-black text-white overflow-hidden">
+    <section className="bg-white text-black dark:bg-black dark:text-white overflow-hidden">
 
       {/* HERO */}
-      <div className="py-28 px-6 bg-gradient-to-br from-orange-500/20 via-black to-orange-700/20">
+      <div
+        className="py-28 px-6
+        bg-gradient-to-br
+        from-orange-500/20 via-white to-orange-200/20
+        dark:from-orange-500/20 dark:via-black dark:to-orange-700/20"
+      >
         <div className="max-w-6xl mx-auto">
           <h1 className="text-5xl font-bold mb-6">
             {hero.title}
           </h1>
-          <p className="text-gray-400 max-w-3xl">
+          <p className="text-gray-600 dark:text-gray-400 max-w-3xl">
             {hero.desc}
           </p>
         </div>
@@ -31,17 +36,21 @@ const CustomWeb = () => {
           {sections.why.cards.map((item, i) => (
             <div
               key={i}
-              className="bg-[#151515] p-8 rounded-xl border border-white/10
-              hover:border-orange-500 transition"
+              className="p-8 rounded-xl border transition
+              bg-gray-100 border-black/10
+              dark:bg-[#151515] dark:border-white/10
+              hover:border-orange-500"
             >
-              <p className="text-gray-300">{item}</p>
+              <p className="text-gray-700 dark:text-gray-300">
+                {item}
+              </p>
             </div>
           ))}
         </div>
       </div>
 
       {/* WHAT WE DELIVER */}
-      <div className="bg-[#0f0f0f] py-24 px-6">
+      <div className="py-24 px-6 bg-gray-100 dark:bg-[#0f0f0f]">
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
 
           <div>
@@ -49,15 +58,19 @@ const CustomWeb = () => {
               {sections.deliver.title}
             </h2>
 
-            <ul className="space-y-4 text-gray-300">
+            <ul className="space-y-4 text-gray-700 dark:text-gray-300">
               {sections.deliver.list.map((item, i) => (
                 <li key={i}>• {item}</li>
               ))}
             </ul>
           </div>
 
-          <div className="bg-[#141414] p-10 rounded-xl border border-white/10">
-            <p className="text-gray-400 leading-relaxed">
+          <div
+            className="p-10 rounded-xl border
+            bg-white border-black/10
+            dark:bg-[#141414] dark:border-white/10"
+          >
+            <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
               {sections.deliver.sideText}
             </p>
           </div>
@@ -77,13 +90,17 @@ const CustomWeb = () => {
             {sections.process.steps.map((step, i) => (
               <div
                 key={i}
-                className="bg-[#1a1a1a] p-6 rounded-lg border border-white/5
-                hover:border-orange-500 transition"
+                className="p-6 rounded-lg border transition
+                bg-gray-100 border-black/10
+                dark:bg-[#1a1a1a] dark:border-white/5
+                hover:border-orange-500"
               >
                 <div className="text-orange-500 text-2xl font-bold mb-3">
                   0{i + 1}
                 </div>
-                <p className="text-gray-300">{step}</p>
+                <p className="text-gray-700 dark:text-gray-300">
+                  {step}
+                </p>
               </div>
             ))}
           </div>

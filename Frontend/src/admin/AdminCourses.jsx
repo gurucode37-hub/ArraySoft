@@ -13,9 +13,7 @@ const AdminCourses = () => {
         const res = await axios.get(
           `${import.meta.env.VITE_Backend_url}/admin/show-course`,
           {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
+            headers: { Authorization: `Bearer ${token}` },
           }
         );
 
@@ -33,20 +31,20 @@ const AdminCourses = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-black text-white p-10">
+    <div className="min-h-screen bg-white text-black dark:bg-black dark:text-white p-10">
       <h1 className="text-3xl font-bold mb-6 text-orange-500">
         Courses
       </h1>
 
       {loading ? (
-        <p className="text-gray-400">Loading...</p>
+        <p className="text-gray-600 dark:text-gray-400">Loading...</p>
       ) : courses.length === 0 ? (
-        <p className="text-gray-400">No courses found</p>
+        <p className="text-gray-600 dark:text-gray-400">No courses found</p>
       ) : (
         <div className="overflow-x-auto">
-          <table className="w-full border border-white/10 rounded-lg">
-            <thead className="bg-[#111]">
-              <tr className="text-orange-400 text-left">
+          <table className="w-full border border-gray-300 dark:border-white/10 rounded-lg">
+            <thead className="bg-gray-100 dark:bg-[#111]">
+              <tr className="text-orange-500 dark:text-orange-400 text-left">
                 <th className="p-3">User Id</th>
                 <th className="p-3">Course Name</th>
                 <th className="p-3">Amount</th>
@@ -58,7 +56,10 @@ const AdminCourses = () => {
 
             <tbody>
               {courses.map((course) => (
-                <tr key={course._id} className="hover:bg-[#111]">
+                <tr
+                  key={course._id}
+                  className="hover:bg-gray-200 dark:hover:bg-[#111]"
+                >
                   <td className="p-3">{course.user_id}</td>
                   <td className="p-3">{course.courseName}</td>
                   <td className="p-3">₹{course.courseAmount}</td>
@@ -66,7 +67,7 @@ const AdminCourses = () => {
                   <td className="p-3">
                     {new Date(course.createdAt).toLocaleString()}
                   </td>
-                  <td className="p-3 text-green-400">
+                  <td className="p-3 text-green-600 dark:text-green-400">
                     {course.paymentStatus}
                   </td>
                 </tr>

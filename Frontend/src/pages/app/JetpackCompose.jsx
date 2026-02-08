@@ -11,7 +11,7 @@ const JetpackCompose = () => {
   const { hero, sections, cta } = jetpackAppData;
 
   return (
-    <section className="bg-black text-white overflow-hidden">
+    <section className="bg-white text-black dark:bg-black dark:text-white overflow-hidden">
 
       {/* HERO */}
       <div
@@ -23,7 +23,7 @@ const JetpackCompose = () => {
           <h1 className="text-5xl font-bold mb-6 text-orange-500">
             {hero.title}
           </h1>
-          <p className="text-gray-300 max-w-3xl text-lg">
+          <p className="text-white dark:text-gray-300 max-w-3xl text-lg">
             {hero.desc}
           </p>
         </div>
@@ -37,12 +37,9 @@ const JetpackCompose = () => {
             {sections.why.title}
           </h2>
 
-          <ul className="space-y-4 text-gray-300">
+          <ul className="space-y-4 text-gray-700 dark:text-gray-300">
             {sections.why.points.map((item, i) => (
-              <li
-                key={i}
-                className="hover:translate-x-2 transition"
-              >
+              <li key={i} className="hover:translate-x-2 transition">
                 • {item}
               </li>
             ))}
@@ -50,15 +47,17 @@ const JetpackCompose = () => {
         </div>
 
         <div
-          className="bg-[#151515] p-10 rounded-xl border border-white/10
-          hover:border-orange-500 transition animate-slideInRight"
+          className="p-10 rounded-xl border transition animate-slideInRight
+          bg-gray-100 border-black/10
+          dark:bg-[#151515] dark:border-white/10
+          hover:border-orange-500"
         >
           <h3 className="text-xl font-semibold mb-6 flex items-center gap-2">
             <FaLayerGroup className="text-orange-500" />
             {sections.features.title}
           </h3>
 
-          <ul className="space-y-3 text-gray-400">
+          <ul className="space-y-3 text-gray-600 dark:text-gray-400">
             {sections.features.list.map((item, i) => (
               <li key={i}>✔ {item}</li>
             ))}
@@ -67,7 +66,7 @@ const JetpackCompose = () => {
       </div>
 
       {/* DELIVER + TECH STACK */}
-      <div className="bg-[#0f0f0f] py-24 px-6">
+      <div className="py-24 px-6 bg-gray-100 dark:bg-[#0f0f0f]">
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
 
           <div>
@@ -75,18 +74,22 @@ const JetpackCompose = () => {
               {sections.deliver.title}
             </h2>
 
-            <ul className="space-y-4 text-gray-300 mb-6">
+            <ul className="space-y-4 text-gray-700 dark:text-gray-300 mb-6">
               {sections.deliver.list.map((item, i) => (
                 <li key={i}>• {item}</li>
               ))}
             </ul>
 
-            <p className="text-gray-400">
+            <p className="text-gray-600 dark:text-gray-400">
               {sections.deliver.sideText}
             </p>
           </div>
 
-          <div className="bg-[#151515] p-10 rounded-xl border border-white/10">
+          <div
+            className="p-10 rounded-xl border
+            bg-gray-100 border-black/10
+            dark:bg-[#151515] dark:border-white/10"
+          >
             <h3 className="text-xl font-semibold mb-6 flex items-center gap-2">
               <FaCogs className="text-orange-500" />
               {sections.techStack.title}
@@ -96,8 +99,10 @@ const JetpackCompose = () => {
               {sections.techStack.items.map((tech, i) => (
                 <span
                   key={i}
-                  className="px-4 py-2 bg-black border border-white/10
-                  rounded text-sm hover:border-orange-500 transition"
+                  className="px-4 py-2 rounded text-sm transition
+                  bg-white border border-black/10
+                  dark:bg-black dark:border-white/10
+                  hover:border-orange-500"
                 >
                   {tech}
                 </span>
@@ -120,13 +125,17 @@ const JetpackCompose = () => {
             {sections.process.steps.map((step, i) => (
               <div
                 key={i}
-                className="bg-[#1a1a1a] p-6 rounded-lg border border-white/5
-                hover:border-orange-500 hover:-translate-y-2 transition"
+                className="p-6 rounded-lg border transition
+                bg-gray-100 border-black/10
+                dark:bg-[#1a1a1a] dark:border-white/5
+                hover:border-orange-500 hover:-translate-y-2"
               >
                 <div className="text-orange-500 text-2xl font-bold mb-3">
                   0{i + 1}
                 </div>
-                <p className="text-gray-300">{step}</p>
+                <p className="text-gray-700 dark:text-gray-300">
+                  {step}
+                </p>
               </div>
             ))}
           </div>

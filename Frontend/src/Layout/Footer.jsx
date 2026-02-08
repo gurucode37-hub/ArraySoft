@@ -12,15 +12,16 @@ import {
 
 const Footer = () => {
   return (
-    <footer className="relative bg-[#0c0c0c] text-gray-300">
+    <footer className="relative bg-gray-100 dark:bg-[#0c0c0c] text-gray-700 dark:text-gray-300">
 
+      {/* Top line */}
       <div className="h-1 bg-gradient-to-r from-orange-500 via-orange-400 to-orange-600"></div>
 
       <div className="max-w-7xl mx-auto px-6 py-20 grid gap-14 md:grid-cols-3">
 
         {/* Contact */}
         <div>
-          <h3 className="text-white text-xl font-semibold mb-6">
+          <h3 className="text-black dark:text-white text-xl font-semibold mb-6">
             Our <span className="text-orange-500">Contacts</span>
           </h3>
 
@@ -48,14 +49,19 @@ const Footer = () => {
             <img src="/arraysoft.png" alt="ArraySoft" className="w-14 h-14" />
           </div>
 
-          <h2 className="text-white text-2xl font-semibold">ArraySoft</h2>
+          <h2 className="text-black dark:text-white text-2xl font-semibold">
+            ArraySoft
+          </h2>
           <p className="text-orange-500 text-xs tracking-widest mt-1">
             TECHNOLOGY PVT. LTD.
           </p>
 
-          <p className="mt-6 text-sm text-gray-400 leading-relaxed">
+          <p className="mt-6 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
             Website Design & Development, Digital Marketing,  
-            Software Development — <span className="text-white">ALL IT SERVICES</span>
+            Software Development —{" "}
+            <span className="text-black dark:text-white">
+              ALL IT SERVICES
+            </span>
           </p>
 
           <div className="flex justify-center gap-4 mt-8">
@@ -69,11 +75,11 @@ const Footer = () => {
 
         {/* About */}
         <div>
-          <h3 className="text-white text-xl font-semibold mb-6">
+          <h3 className="text-black dark:text-white text-xl font-semibold mb-6">
             About <span className="text-orange-500">Us</span>
           </h3>
 
-          <p className="text-sm leading-relaxed text-gray-400">
+          <p className="text-sm leading-relaxed text-gray-600 dark:text-gray-400">
             We provide end-to-end digital solutions including custom website
             development, software development, e-commerce platforms,
             mobile applications, and Flutter apps.  
@@ -85,17 +91,18 @@ const Footer = () => {
 
       </div>
 
-      <div className="border-t border-white/10 py-6 text-center text-sm text-gray-500">
+      {/* Bottom */}
+      <div className="border-t border-black/10 dark:border-white/10 py-6 text-center text-sm text-gray-500">
         © 2026 ArraySoft Technology Pvt. Ltd. | Unauthorized use is prohibited.
       </div>
 
-      {/* Icon common styles */}
+      {/* Icon styles */}
       <style>
         {`
           .footer-icon {
             width: 40px;
             height: 40px;
-            border: 1px solid #555;
+            border: 1px solid #777;
             border-radius: 9999px;
             display: flex;
             align-items: center;

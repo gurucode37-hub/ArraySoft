@@ -12,9 +12,12 @@ const AdminUsers = () => {
     const fetchUsers = async () => {
       try {
         const res = await axios.get(
-          `${import.meta.env.VITE_Backend_url}/admin/users`, {headers:{
-            Authorization: `Bearer ${token}`,
-          }}
+          `${import.meta.env.VITE_Backend_url}/admin/users`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
         );
 
         if (res.data.success) {
@@ -43,7 +46,7 @@ const AdminUsers = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-black text-white flex items-center justify-center">
+      <div className="min-h-screen bg-white text-black dark:bg-black dark:text-white flex items-center justify-center">
         Loading users...
       </div>
     );
@@ -51,32 +54,47 @@ const AdminUsers = () => {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-black text-red-500 flex items-center justify-center">
+      <div className="min-h-screen bg-white dark:bg-black text-red-500 flex items-center justify-center">
         {error}
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-black text-white p-8">
-      <h1 className="text-3xl text-orange-400 mb-2">
+    <div className="min-h-screen bg-white text-black dark:bg-black dark:text-white p-8">
+      <h1 className="text-3xl text-orange-500 dark:text-orange-400 mb-2">
         Admin Panel
       </h1>
-      <p className="text-gray-400 mb-6">
+
+      <p className="text-gray-600 dark:text-gray-400 mb-6">
         Total Users: {totalUsers}
       </p>
 
       <div className="overflow-x-auto">
-        <table className="w-full border border-white/10 text-sm">
-          <thead className="bg-[#111] text-orange-400">
+        <table className="w-full border border-gray-300 dark:border-white/10 text-sm">
+          <thead className="bg-gray-100 dark:bg-[#111] text-orange-500 dark:text-orange-400">
             <tr>
-              <th className="p-3 border border-white/10">#</th>
-              <th className="p-3 border border-white/10">Username</th>
-              <th className="p-3 border border-white/10">Email</th>
-              <th className="p-3 border border-white/10">Joined</th>
-              <th className="p-3 border border-white/10">Last Login</th>
-              <th className="p-3 border border-white/10">Last Logout</th>
-              <th className="p-3 border border-white/10">Time Spent</th>
+              <th className="p-3 border border-gray-300 dark:border-white/10">
+                #
+              </th>
+              <th className="p-3 border border-gray-300 dark:border-white/10">
+                Username
+              </th>
+              <th className="p-3 border border-gray-300 dark:border-white/10">
+                Email
+              </th>
+              <th className="p-3 border border-gray-300 dark:border-white/10">
+                Joined
+              </th>
+              <th className="p-3 border border-gray-300 dark:border-white/10">
+                Last Login
+              </th>
+              <th className="p-3 border border-gray-300 dark:border-white/10">
+                Last Logout
+              </th>
+              <th className="p-3 border border-gray-300 dark:border-white/10">
+                Time Spent
+              </th>
             </tr>
           </thead>
 
@@ -84,27 +102,27 @@ const AdminUsers = () => {
             {users.map((user, index) => (
               <tr
                 key={user._id}
-                className="hover:bg-[#111] transition"
+                className="hover:bg-gray-200 dark:hover:bg-[#111] transition"
               >
-                <td className="p-3 border border-white/10">
+                <td className="p-3 border border-gray-300 dark:border-white/10">
                   {index + 1}
                 </td>
-                <td className="p-3 border border-white/10">
+                <td className="p-3 border border-gray-300 dark:border-white/10">
                   {user.username}
                 </td>
-                <td className="p-3 border border-white/10">
+                <td className="p-3 border border-gray-300 dark:border-white/10">
                   {user.email}
                 </td>
-                <td className="p-3 border border-white/10">
+                <td className="p-3 border border-gray-300 dark:border-white/10">
                   {formatDate(user.joinedAt)}
                 </td>
-                <td className="p-3 border border-white/10">
+                <td className="p-3 border border-gray-300 dark:border-white/10">
                   {formatDate(user.lastLogin)}
                 </td>
-                <td className="p-3 border border-white/10">
+                <td className="p-3 border border-gray-300 dark:border-white/10">
                   {formatDate(user.lastLogout)}
                 </td>
-                <td className="p-3 border border-white/10">
+                <td className="p-3 border border-gray-300 dark:border-white/10">
                   {formatTime(user.totalTimeSpent)}
                 </td>
               </tr>

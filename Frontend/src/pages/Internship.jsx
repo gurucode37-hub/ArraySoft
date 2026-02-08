@@ -38,19 +38,21 @@ ${user.username}
     `;
 
     window.location.href = `mailto:info@arraysofttechnology.com?subject=${encodeURIComponent(
-      subject,
+      subject
     )}&body=${encodeURIComponent(body)}`;
   };
 
   return (
-    <section className="bg-black text-white">
+    <section className="bg-white dark:bg-black text-black dark:text-white">
       {/* HERO */}
-      <div className="py-28 px-6 bg-gradient-to-br from-zinc-900 to-black text-center">
+      <div className="py-28 px-6 
+        bg-gradient-to-br from-gray-100 to-white 
+        dark:from-zinc-900 dark:to-black text-center">
         <h1 className="text-4xl md:text-5xl font-bold mb-6">
           Internship at{" "}
           <span className="text-orange-500">ArraySoft Technology</span>
         </h1>
-        <p className="text-gray-400 max-w-3xl mx-auto">
+        <p className="text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
           Apply for industry-focused internships with real exposure and
           professional mentorship.
         </p>
@@ -65,8 +67,9 @@ ${user.username}
           return (
             <div
               key={item.id}
-              className="bg-zinc-900/70 backdrop-blur rounded-2xl p-8
-              border border-white/10 transition-all duration-500
+              className="bg-gray-100 dark:bg-zinc-900/70 backdrop-blur rounded-2xl p-8
+              border border-black/10 dark:border-white/10
+              transition-all duration-500
               hover:-translate-y-2 hover:border-orange-500/50
               hover:shadow-xl hover:shadow-orange-500/10"
             >
@@ -74,18 +77,21 @@ ${user.username}
                 {item.title}
               </h2>
 
-              <p className="text-gray-400 text-sm mb-6 leading-relaxed">
+              <p className="text-gray-600 dark:text-gray-400 text-sm mb-6 leading-relaxed">
                 {item.description}
               </p>
 
               {/* MODE DROPDOWN */}
               <div className="mb-3">
-                <label className=" block text-xs text-gray-400 mb-1">Mode</label>
+                <label className="block text-xs text-gray-600 dark:text-gray-400 mb-1">
+                  Mode
+                </label>
                 <select
                   onChange={(e) => (selectedMode = e.target.value)}
-                  className=" bg-zinc-800 border border-white/10
-    rounded-md px-3 py-2 text-xs
-    focus:outline-none focus:border-orange-500"
+                  className="bg-white dark:bg-zinc-800 
+                  border border-black/10 dark:border-white/10
+                  rounded-md px-3 py-2 text-xs
+                  focus:outline-none focus:border-orange-500"
                 >
                   <option value="">Select</option>
                   {item.modes.map((mode, i) => (
@@ -98,14 +104,15 @@ ${user.username}
 
               {/* DURATION DROPDOWN */}
               <div className="mb-5">
-                <label className="block text-xs text-gray-400 mb-1">
+                <label className="block text-xs text-gray-600 dark:text-gray-400 mb-1">
                   Duration
                 </label>
                 <select
                   onChange={(e) => (selectedDuration = e.target.value)}
-                  className=" bg-zinc-800 border border-white/10
-    rounded-md px-3 py-2 text-xs
-    focus:outline-none focus:border-orange-500"
+                  className="bg-white dark:bg-zinc-800 
+                  border border-black/10 dark:border-white/10
+                  rounded-md px-3 py-2 text-xs
+                  focus:outline-none focus:border-orange-500"
                 >
                   <option value="">Select</option>
                   {item.durations.map((d, i) => (
@@ -117,7 +124,7 @@ ${user.username}
               </div>
 
               {/* BENEFITS */}
-              <ul className="text-sm text-gray-300 space-y-2 mb-8">
+              <ul className="text-sm text-gray-700 dark:text-gray-300 space-y-2 mb-8">
                 {item.benefits.slice(0, 3).map((b, i) => (
                   <li key={i}>✔ {b}</li>
                 ))}
@@ -129,8 +136,8 @@ ${user.username}
                   handleApply(item, selectedMode, selectedDuration)
                 }
                 className="w-full bg-orange-500 text-black
-  py-2 cursor-pointer text-sm rounded-md font-medium
-  transition hover:bg-orange-600 active:scale-95"
+                py-2 cursor-pointer text-sm rounded-md font-medium
+                transition hover:bg-orange-600 active:scale-95"
               >
                 Apply
               </button>
@@ -140,12 +147,14 @@ ${user.username}
       </div>
 
       {/* FOOTER CTA */}
-      <div className="py-20 bg-gradient-to-r from-zinc-900 to-black text-center">
+      <div className="py-20 
+        bg-gradient-to-r from-gray-100 to-white 
+        dark:from-zinc-900 dark:to-black text-center">
         <h2 className="text-3xl font-bold mb-4">
           Take the First Step Towards Your{" "}
           <span className="text-orange-500">Career</span>
         </h2>
-        <p className="text-gray-400">
+        <p className="text-gray-600 dark:text-gray-400">
           Choose your internship, apply easily, and get started.
         </p>
       </div>

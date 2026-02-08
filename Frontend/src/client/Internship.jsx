@@ -44,23 +44,37 @@ const Internship = () => {
   /* ================= UI ================= */
   if (!token || !email) {
     return (
-      <div className="min-h-screen bg-black text-white flex items-center justify-center">
+      <div
+        className="min-h-screen flex items-center justify-center
+        bg-white text-black
+        dark:bg-black dark:text-white"
+      >
         <p>Not logged in</p>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-black text-white p-10">
-      <h1 className="text-2xl text-orange-400 mb-6">
+    <div
+      className="min-h-screen p-10
+      bg-white text-black
+      dark:bg-black dark:text-white"
+    >
+      <h1 className="text-2xl text-orange-500 mb-6">
         My Internships
       </h1>
 
       {loading ? (
-        <p className="text-gray-400">Loading...</p>
+        <p className="text-gray-600 dark:text-gray-400">
+          Loading...
+        </p>
       ) : internships.length === 0 ? (
-        <div className="bg-[#111] border border-orange-500 rounded-xl p-6">
-          <p className="text-gray-400">
+        <div
+          className="rounded-xl p-6 border
+          bg-gray-100 border-orange-400
+          dark:bg-[#111] dark:border-orange-500"
+        >
+          <p className="text-gray-600 dark:text-gray-400">
             No active internships found.
           </p>
         </div>
@@ -69,17 +83,19 @@ const Internship = () => {
           {internships.map((item) => (
             <div
               key={item.internId}
-              className="bg-[#111] border border-orange-500 rounded-xl p-6"
+              className="rounded-xl p-6 border
+              bg-gray-100 border-orange-400
+              dark:bg-[#111] dark:border-orange-500"
             >
-              <p className="text-sm text-gray-400 mb-1">
+              <p className="text-sm mb-1 text-gray-600 dark:text-gray-400">
                 Internship ID: {item.internId}
               </p>
 
-              <h2 className="text-xl font-semibold text-orange-300">
+              <h2 className="text-xl font-semibold text-orange-500">
                 {item.internshipName}
               </h2>
 
-              <p className="text-gray-300 mt-2">
+              <p className="mt-2 text-gray-700 dark:text-gray-300">
                 Duration: {item.duration} months
               </p>
             </div>

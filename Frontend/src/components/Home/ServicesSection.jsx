@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const ServicesSections = () => {
   return (
-    <section className="bg-black text-white py-28 px-6 space-y-32">
+    <section className="bg-white dark:bg-black text-black dark:text-white py-28 px-6 space-y-32">
 
       {/* Web Development */}
       <div className="max-w-7xl mx-auto" id="web-development">
@@ -20,8 +20,9 @@ const ServicesSections = () => {
           ].map((item, i) => (
             <div
               key={i}
-              className="group bg-gradient-to-b from-[#1c1c1c] to-[#141414] 
-              p-8 rounded-lg border border-white/5
+              className="group 
+              bg-gray-100 dark:bg-gradient-to-b dark:from-[#1c1c1c] dark:to-[#141414]
+              p-8 rounded-lg border border-black/10 dark:border-white/5
               hover:-translate-y-2 hover:border-orange-500/60
               hover:shadow-[0_20px_60px_-15px_rgba(255,115,0,0.35)]
               transition-all duration-500"
@@ -62,8 +63,9 @@ const ServicesSections = () => {
           ].map((item, i) => (
             <div
               key={i}
-              className="group bg-gradient-to-b from-[#1c1c1c] to-[#141414] 
-              p-8 rounded-lg border border-white/5
+              className="group 
+              bg-gray-100 dark:bg-gradient-to-b dark:from-[#1c1c1c] dark:to-[#141414]
+              p-8 rounded-lg border border-black/10 dark:border-white/5
               hover:-translate-y-2 hover:border-orange-500/60
               hover:shadow-[0_20px_60px_-15px_rgba(255,115,0,0.35)]
               transition-all duration-500"
@@ -90,9 +92,13 @@ const ServicesSections = () => {
       </div>
 
       {/* Courses */}
-      <div id="courses" className="max-w-7xl mx-auto bg-gradient-to-r from-[#111] to-[#1a1a1a] 
-      p-14 rounded-xl border border-orange-500/30
-      flex flex-col md:flex-row items-center justify-between gap-10">
+      <div
+        id="courses"
+        className="max-w-7xl mx-auto 
+        bg-gray-100 dark:bg-gradient-to-r dark:from-[#111] dark:to-[#1a1a1a]
+        p-14 rounded-xl border border-orange-500/30
+        flex flex-col md:flex-row items-center justify-between gap-10"
+      >
         <h2 className="text-4xl font-bold">
           Professional <span className="text-orange-500">Courses</span>
         </h2>
@@ -107,9 +113,13 @@ const ServicesSections = () => {
       </div>
 
       {/* Internship */}
-      <div id="internship" className="max-w-7xl mx-auto bg-gradient-to-r from-[#111] to-[#1a1a1a] 
-      p-14 rounded-xl border border-orange-500/30
-      flex flex-col md:flex-row items-center justify-between gap-10">
+      <div
+        id="internship"
+        className="max-w-7xl mx-auto 
+        bg-gray-100 dark:bg-gradient-to-r dark:from-[#111] dark:to-[#1a1a1a]
+        p-14 rounded-xl border border-orange-500/30
+        flex flex-col md:flex-row items-center justify-between gap-10"
+      >
         <h2 className="text-4xl font-bold">
           Internship <span className="text-orange-500">Program</span>
         </h2>
