@@ -15,6 +15,7 @@
     "@huggingface/inference": "^4.13.11",
     "@langchain/community": "^1.1.12",
     "@langchain/core": "^1.1.19",
+    "axios": "^1.13.5",
     "bcrypt": "^6.0.0",
     "cors": "^2.8.6",
     "crypto": "^1.0.1",
