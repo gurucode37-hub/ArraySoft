@@ -38,16 +38,18 @@ ${user.username}
     `;
 
     window.location.href = `mailto:info@arraysofttechnology.com?subject=${encodeURIComponent(
-      subject
+      subject,
     )}&body=${encodeURIComponent(body)}`;
   };
 
   return (
     <section className="bg-white dark:bg-black text-black dark:text-white">
       {/* HERO */}
-      <div className="py-28 px-6 
+      <div
+        className="py-28 px-6 
         bg-gradient-to-br from-gray-100 to-white 
-        dark:from-zinc-900 dark:to-black text-center">
+        dark:from-zinc-900 dark:to-black text-center"
+      >
         <h1 className="text-4xl md:text-5xl font-bold mb-6">
           Internship at{" "}
           <span className="text-orange-500">ArraySoft Technology</span>
@@ -81,46 +83,48 @@ ${user.username}
                 {item.description}
               </p>
 
-              {/* MODE DROPDOWN */}
-              <div className="mb-3">
-                <label className="block text-xs text-gray-600 dark:text-gray-400 mb-1">
-                  Mode
-                </label>
-                <select
-                  onChange={(e) => (selectedMode = e.target.value)}
-                  className="bg-white dark:bg-zinc-800 
-                  border border-black/10 dark:border-white/10
-                  rounded-md px-3 py-2 text-xs
-                  focus:outline-none focus:border-orange-500"
-                >
-                  <option value="">Select</option>
-                  {item.modes.map((mode, i) => (
-                    <option key={i} value={mode}>
-                      {mode}
-                    </option>
-                  ))}
-                </select>
-              </div>
+              <div className="flex gap-4">
+                {/* MODE DROPDOWN */}
+                <div className="mb-5 w-1/2">
+                  <label className="block text-xs text-gray-600 dark:text-gray-400 mb-1">
+                    Mode
+                  </label>
+                  <select
+                    onChange={(e) => (selectedMode = e.target.value)}
+                    className="w-full bg-white dark:bg-zinc-800 
+      border border-black/10 dark:border-white/10
+      rounded-md px-3 py-2 text-xs
+      focus:outline-none focus:border-orange-500"
+                  >
+                    <option value="">Select</option>
+                    {item.modes.map((mode, i) => (
+                      <option key={i} value={mode}>
+                        {mode}
+                      </option>
+                    ))}
+                  </select>
+                </div>
 
-              {/* DURATION DROPDOWN */}
-              <div className="mb-5">
-                <label className="block text-xs text-gray-600 dark:text-gray-400 mb-1">
-                  Duration
-                </label>
-                <select
-                  onChange={(e) => (selectedDuration = e.target.value)}
-                  className="bg-white dark:bg-zinc-800 
-                  border border-black/10 dark:border-white/10
-                  rounded-md px-3 py-2 text-xs
-                  focus:outline-none focus:border-orange-500"
-                >
-                  <option value="">Select</option>
-                  {item.durations.map((d, i) => (
-                    <option key={i} value={d}>
-                      {d}
-                    </option>
-                  ))}
-                </select>
+                {/* DURATION DROPDOWN */}
+                <div className="mb-5 w-1/2">
+                  <label className="block text-xs text-gray-600 dark:text-gray-400 mb-1">
+                    Duration
+                  </label>
+                  <select
+                    onChange={(e) => (selectedDuration = e.target.value)}
+                    className="w-full bg-white dark:bg-zinc-800 
+      border border-black/10 dark:border-white/10
+      rounded-md px-3 py-2 text-xs
+      focus:outline-none focus:border-orange-500"
+                  >
+                    <option value="">Select</option>
+                    {item.durations.map((d, i) => (
+                      <option key={i} value={d}>
+                        {d}
+                      </option>
+                    ))}
+                  </select>
+                </div>
               </div>
 
               {/* BENEFITS */}
@@ -147,9 +151,11 @@ ${user.username}
       </div>
 
       {/* FOOTER CTA */}
-      <div className="py-20 
+      <div
+        className="py-20 
         bg-gradient-to-r from-gray-100 to-white 
-        dark:from-zinc-900 dark:to-black text-center">
+        dark:from-zinc-900 dark:to-black text-center"
+      >
         <h2 className="text-3xl font-bold mb-4">
           Take the First Step Towards Your{" "}
           <span className="text-orange-500">Career</span>

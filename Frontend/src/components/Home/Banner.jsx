@@ -36,7 +36,7 @@ const Banner = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setIndex((prev) => prev + 1);
-    }, 4000);
+    }, 4500);
     return () => clearInterval(interval);
   }, []);
 
@@ -97,28 +97,35 @@ const Banner = () => {
           >
             {/* Overlay */}
             <div
-              className="w-full h-full flex flex-col items-center justify-center 
+              className="
+              w-full h-full flex flex-col items-center justify-center
               text-center px-6
-              bg-white/20 dark:bg-black/50"
+              bg-gradient-to-b from-black/70 via-black/50 to-black/70
+              "
             >
-              <p className="text-gray dark:text-white text-sm tracking-widest mb-4">
+              <p className="text-gray-300 text-xs md:text-sm tracking-[0.35em] uppercase mb-6">
                 {slide.desc}
               </p>
 
-              <h1 className="text-orange-500 text-4xl md:text-6xl font-bold">
+              <h1 className="text-orange-500 text-4xl md:text-6xl font-extrabold leading-tight">
                 {slide.title1}
               </h1>
 
-              <h2 className="text-gray-900 dark:text-white text-4xl md:text-6xl font-bold mt-2">
+              <h2 className="text-white text-4xl md:text-6xl font-extrabold mt-2">
                 {slide.title2}
               </h2>
 
               <button
                 onClick={scrollToSection}
-                className="mt-8 bg-orange-500 text-white px-8 py-3 
-                rounded-md hover:bg-orange-600 transition cursor-pointer"
+                className="
+                mt-10 px-10 py-3
+                bg-orange-500 text-black
+                font-semibold rounded-lg
+                hover:bg-orange-600 hover:scale-105
+                transition-all duration-300
+                "
               >
-                GET!
+                Explore More
               </button>
             </div>
           </div>
@@ -128,18 +135,24 @@ const Banner = () => {
       {/* Controls */}
       <button
         onClick={prevSlide}
-        className="absolute left-6 top-1/2 -translate-y-1/2 
-        text-white text-4xl bg-black/40 px-3 
-        hover:bg-orange-500 transition"
+        className="
+        absolute left-6 top-1/2 -translate-y-1/2
+        text-white text-4xl
+        bg-black/40 px-3 py-1 rounded
+        hover:bg-orange-500 transition
+        "
       >
         ‹
       </button>
 
       <button
         onClick={nextSlide}
-        className="absolute right-6 top-1/2 -translate-y-1/2 
-        text-white text-4xl bg-black/40 px-3 
-        hover:bg-orange-500 transition"
+        className="
+        absolute right-6 top-1/2 -translate-y-1/2
+        text-white text-4xl
+        bg-black/40 px-3 py-1 rounded
+        hover:bg-orange-500 transition
+        "
       >
         ›
       </button>
