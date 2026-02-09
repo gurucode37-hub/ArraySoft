@@ -379,7 +379,7 @@ const Nav = () => {
           >
             {toggle === "dark" ? <FaSun /> : <FaMoon />}
           </div>
-          {token && isAdmin && (
+          {isAdmin && (
             <>
               <div className="px-6 py-3 mt-4 text-orange-500 font-semibold">
                 Admin
@@ -399,7 +399,7 @@ const Nav = () => {
                 Website Request
               </Link>
               <Link
-                to="/client/application"
+                to="/admin/applications"
                 onClick={() => setOpen(false)}
                 className="block px-6 py-3 hover:bg-orange-500"
               >
@@ -413,14 +413,14 @@ const Nav = () => {
                 Internship Request
               </Link>
               <Link
-                to="/admin/course"
+                to="/admin/courses"
                 onClick={() => setOpen(false)}
                 className="block px-6 py-3 hover:bg-orange-500"
               >
                 Course Request
               </Link>
               <Link
-                to="/admin/request"
+                to="/admin/requests"
                 onClick={() => setOpen(false)}
                 className="block px-6 py-3 hover:bg-orange-500"
               >
@@ -436,47 +436,54 @@ const Nav = () => {
             </>
           )}
 
-          {token && !isAdmin ? (
-            <>
-              <div className="px-6 py-3 mt-4 text-orange-500 font-semibold">
-                Profile
-              </div>
-              <Link
-                to="/client/profile"
-                onClick={() => setOpen(false)}
-                className="block px-6 py-3 hover:bg-orange-500"
-              >
-                Your Profile
-              </Link>
-              <Link
-                to="/client/website"
-                onClick={() => setOpen(false)}
-                className="block px-6 py-3 hover:bg-orange-500"
-              >
-                Your Website
-              </Link>
-              <Link
-                to="/client/application"
-                onClick={() => setOpen(false)}
-                className="block px-6 py-3 hover:bg-orange-500"
-              >
-                Your Apllication
-              </Link>
-              <Link
-                to="/client/internship"
-                onClick={() => setOpen(false)}
-                className="block px-6 py-3 hover:bg-orange-500"
-              >
-                Your Internship
-              </Link>
-              <Link
-                to="/client/course"
-                onClick={() => setOpen(false)}
-                className="block px-6 py-3 hover:bg-orange-500"
-              >
-                Your Batch
-              </Link>
-            </>
+          {token ? (
+            !isAdmin ? (
+              <>
+                <div className="px-6 py-3 mt-4 text-orange-500 font-semibold">
+                  Profile
+                </div>
+
+                <Link
+                  to="/client/profile"
+                  onClick={() => setOpen(false)}
+                  className="block px-6 py-3 hover:bg-orange-500"
+                >
+                  Your Profile
+                </Link>
+
+                <Link
+                  to="/client/website"
+                  onClick={() => setOpen(false)}
+                  className="block px-6 py-3 hover:bg-orange-500"
+                >
+                  Your Website
+                </Link>
+
+                <Link
+                  to="/client/application"
+                  onClick={() => setOpen(false)}
+                  className="block px-6 py-3 hover:bg-orange-500"
+                >
+                  Your Application
+                </Link>
+
+                <Link
+                  to="/client/internship"
+                  onClick={() => setOpen(false)}
+                  className="block px-6 py-3 hover:bg-orange-500"
+                >
+                  Your Internship
+                </Link>
+
+                <Link
+                  to="/client/batch"
+                  onClick={() => setOpen(false)}
+                  className="block px-6 py-3 hover:bg-orange-500"
+                >
+                  Your Batch
+                </Link>
+              </>
+            ) : null
           ) : (
             <button
               onClick={() => {
