@@ -1,4 +1,6 @@
 import React from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const AdminProfile = () => {
   const role = localStorage.getItem("role");
@@ -9,9 +11,19 @@ const AdminProfile = () => {
       ? JSON.parse(storedAdmin)
       : null;
 
-  const handleLogout = () => {
-    localStorage.clear();
-    window.location.href = "/";
+  /* ================= LOGOUT ================= */
+  const handleLogout = async () => {
+    try {
+      localStorage.clear();
+
+      toast.success("Logged out successfully!");
+
+      setTimeout(() => {
+        window.location.href = "/";
+      }, 800);
+    } catch {
+      toast.error("Logout failed");
+    }
   };
 
   if (role !== "admin" || !admin) {
@@ -24,6 +36,7 @@ const AdminProfile = () => {
 
   return (
     <div className="min-h-screen bg-white text-black dark:bg-black dark:text-white flex items-center justify-center p-6">
+      <ToastContainer position="top-right" autoClose={2000} />
       <div className="w-full max-w-md
                       bg-gray-100 border border-gray-300
                       dark:bg-[#111] dark:border-orange-500

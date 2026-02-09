@@ -52,18 +52,7 @@ const Profile = () => {
   /* ================= LOGOUT ================= */
   const handleLogout = async () => {
     try {
-      await axios.post(
-        `${import.meta.env.VITE_Backend_url}/api/logout`,
-        { email: user.email },
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        }
-      );
-
-      localStorage.removeItem("token");
-      localStorage.removeItem("user");
+      localStorage.clear();
 
       toast.success("Logged out successfully!");
 
