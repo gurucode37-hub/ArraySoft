@@ -31,12 +31,7 @@ export const chatbotData = {
     appDevelopment: {
       summary:
         "We develop scalable, secure and high-performance mobile and backend applications.",
-      technologies: [
-        "Flutter",
-        "Java",
-        "Jetpack Compose",
-        "Kotlin",
-      ],
+      technologies: ["Flutter", "Java", "Jetpack Compose", "Kotlin"],
     },
   },
 
@@ -51,11 +46,7 @@ export const chatbotData = {
         "Near-native performance",
         "Beautiful UI",
       ],
-      useCases: [
-        "Startup MVPs",
-        "E-commerce apps",
-        "On-demand service apps",
-      ],
+      useCases: ["Startup MVPs", "E-commerce apps", "On-demand service apps"],
     },
 
     java: {
@@ -67,44 +58,26 @@ export const chatbotData = {
         "Enterprise ready",
         "Large ecosystem",
       ],
-      useCases: [
-        "Banking software",
-        "Enterprise systems",
-        "Backend services",
-      ],
+      useCases: ["Banking software", "Enterprise systems", "Backend services"],
     },
 
     jetpackCompose: {
       about:
         "Jetpack Compose is a modern toolkit for building native Android UI using declarative programming.",
-      features: [
-        "Declarative UI",
-        "Less boilerplate",
-        "Modern Android UI",
-      ],
-      useCases: [
-        "Modern Android apps",
-        "UI-heavy applications",
-      ],
+      features: ["Declarative UI", "Less boilerplate", "Modern Android UI"],
+      useCases: ["Modern Android apps", "UI-heavy applications"],
     },
 
     kotlin: {
       about:
         "Kotlin is the official Android language used to build safe, concise and high-performance apps.",
-      features: [
-        "Null safety",
-        "Concise syntax",
-        "Fully Android native",
-      ],
-      useCases: [
-        "Native Android apps",
-        "Long-term Android projects",
-      ],
+      features: ["Null safety", "Concise syntax", "Fully Android native"],
+      useCases: ["Native Android apps", "Long-term Android projects"],
     },
   },
 
   // ================= COURSES =================
- courses: {
+  courses: {
     benefits: [
       "Certificates",
       "Hands-on projects",
@@ -127,14 +100,12 @@ export const chatbotData = {
       {
         title: "C++ Object Oriented Programming",
         price: 3499,
-        about:
-          "OOP-based C++ course covering real-world programming concepts.",
+        about: "OOP-based C++ course covering real-world programming concepts.",
       },
       {
         title: "SQL – Structured Query Language",
         price: 2799,
-        about:
-          "Database-focused SQL course with real-world query practice.",
+        about: "Database-focused SQL course with real-world query practice.",
       },
       {
         title: "MongoDB (NoSQL Database)",
@@ -181,39 +152,48 @@ export const chatbotData = {
     ],
   },
 
-
   // ================= INTERNSHIPS =================
-faq: {
-  contact:
-    "You can contact us via phone, email, or by using the contact form available on our website.",
-
-  location:
-    "We are located in Gandhinagar, Gujarat. Offline training is also available.",
-
-  pricing:
-    "Pricing depends on the service or course. Please contact us for exact details.",
-
-  complaint:
-    "If you want to submit a complaint regarding any issue, please visit the Contact section available in the navigation menu and send your message through the contact form.",
-
-  websiteDevelopment:
-    "If you want to get a website developed, you can connect with our team by sending a message through the Contact section or by clicking the WhatsApp icon available on the left side of the website.",
-
-  coursePurchase:
-    "If you want to purchase a course, please visit the Courses section available in the navigation menu and select your desired course.",
-
-  support:
-    "For any kind of support or assistance, feel free to contact us through the Contact section. Our team will respond as soon as possible.",
-},
-
-
-  // ================= FAQ / QUICK ANSWERS =================
   faq: {
     contact:
-      "You can contact us via phone, email, or the contact form on our website.",
+      "You can contact us via phone, email, or by using the contact form available on our website.",
+
     location:
       "We are located in Gandhinagar, Gujarat. Offline training is also available.",
+
     pricing:
       "Pricing depends on the service or course. Please contact us for exact details.",
+
+    complaint:
+      "If you want to submit a complaint regarding any issue, please visit the Contact section available in the navigation menu and send your message through the contact form.",
+
+    websiteDevelopment:
+      "If you want to get a website developed, you can connect with our team by sending a message through the Contact section or by clicking the WhatsApp icon available on the left side of the website.",
+
+    coursePurchase:
+      "If you want to purchase a course, please visit the Courses section available in the navigation menu and select your desired course.",
+
+    support:
+      "For any kind of support or assistance, feel free to contact us through the Contact section. Our team will respond as soon as possible.",
+  },
+
+  greetings: {
+    hi: "Hello 👋 Welcome to ArraySoft Technology! How can I assist you today?",
+    hello: "Hi there! 😊 How can I help you?",
+    hey: "Hey! 👋 How can I assist you today?",
+    goodMorning: "Good morning ☀️ How can I help you today?",
+    goodEvening: "Good evening 🌙 How can I assist you?",
+  },
+
+  website: {
+    features: [
+      "Company information section",
+      "Services overview",
+      "Course listing and pricing",
+      "Contact form",
+      "WhatsApp quick contact option",
+      "Offline and online training details",
+    ],
+    about:
+      "Our website provides detailed information about our services, courses, and training programs. Users can contact us directly through the contact form or WhatsApp.",
   },
 };
